@@ -252,3 +252,34 @@ void name_check()
     }
 }
 //----------------------------------------------------------
+void encryption(char x)
+{
+    int a =5,b=8;
+    string alpha_upper="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    string alpha_lower="abcdefghijklmnopqrstuvwxyz";
+    if(isalpha(x))
+    {
+        if(isupper(x))
+        {
+            for (int j = 0; j < alpha_upper.length(); ++j)
+            {
+                if (alpha_upper[j] == x)
+                {
+                     y=alpha_upper[(a * j + b) % 26];
+                }
+            }
+        }
+        else if(islower(x))
+        {
+            for (int j = 0; j < alpha_lower.length(); ++j)
+            {
+                if (alpha_lower[j] == x)
+                {
+                    y= alpha_lower[(a * j + b) % 26];
+                }
+            }
+        }
+    }
+    else
+        y=x;
+}
