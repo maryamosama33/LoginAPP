@@ -200,3 +200,36 @@ void reemail()
         reemail();
 }
 //------------------------------------------------
+//------------------------------------------------
+void phone_check()
+{
+    string phone;
+    cout<<"\nEnter the phone number: ";
+    cin>>phone;
+    if(phone[0]=='0'&&phone[1]=='1')
+    {
+        if(phone.length()!=11)
+        {
+            cout<<"invalid number!!! ";
+            phone_check();
+        }
+        for (int j = 0; j < phone.length(); ++j)
+        {
+            if(!(phone[j]>='0'&&phone[j]<='9'))
+            {
+                cout<<"invalid number!!! ";
+                phone_check();
+            }
+        }
+    }
+    else
+    {
+        cout<<"invalid number!!! ";
+        phone_check();
+    }
+    ofstream reg("users.txt",ios::app);
+    reg<<phone<<endl;
+    reg.close();
+
+}
+//---------------------------------------------
