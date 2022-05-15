@@ -151,3 +151,52 @@ void r_username()
         r_username();
 }
 //----------------------------------------------------------
+//------------------------------------------
+bool email_check(string c_email)
+{
+    const regex pattern("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
+    return regex_match(c_email,pattern);
+}
+//-------------------------------------------
+void reemail()
+{
+    string email;
+    bool check= true;
+    //email register:
+    ofstream reg("users.txt",ios::app);
+    cout<<"\n\nEnter the email :";
+    cin>>email;
+    ifstream input;
+    size_t pos;
+    string line;
+    input.open("users.txt");
+    if(input.is_open())
+    {
+        while(getline(input,line))
+        {
+            pos = line.find(email);
+            if(pos!=string::npos)
+            {
+                cout <<"Found email,enter another email!! "<<endl;
+                check=false;
+                break;
+            }
+        }
+    }
+    if(check== 1)
+    {
+        if(email_check(email))
+        {
+            reg<<email<<endl;
+            reg.close();
+        }
+        else
+        {
+            cout<<"invalid email!!! "<<endl;
+            reemail();
+        }
+    }
+    else
+        reemail();
+}
+//------------------------------------------------
