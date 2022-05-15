@@ -117,3 +117,37 @@ void pass()
   }
 
 //------------------------------------------
+//----------------------------------------------------------
+void r_username()
+{
+    bool check= true;
+    ofstream reg("users.txt",ios::app);
+    string reguser;
+    cout<<"\nEnter the username :";
+    cin>>reguser;
+    ifstream input;
+    size_t pos;
+    string line;
+    input.open("users.txt");
+    if(input.is_open())
+    {
+        while(getline(input,line))
+        {
+            pos = line.find(reguser);
+            if(pos!=string::npos)
+            {
+                cout <<"Found username,enter another username!! "<<endl;
+                check=false;
+                break;
+            }
+        }
+    }
+    if(check== 1)
+    {
+       reg<<reguser<<endl;
+         reg.close();
+    }
+    else
+        r_username();
+}
+//----------------------------------------------------------
