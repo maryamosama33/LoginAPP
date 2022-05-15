@@ -233,3 +233,22 @@ void phone_check()
 
 }
 //---------------------------------------------
+//---------------------------------------------
+void name_check()
+{
+    cout<<"\nEnter the name: ";
+    cin>>name;
+    for (int j = 0; j <name.length(); ++j)
+    {
+        if((name[j] >= 'a' && name[j] <= 'z' )||(name[j] >= 'A' && name[j] <= 'Z')||(name[j])=='_')
+        {
+            continue;
+        }
+        else
+        {
+            cout<<"invalid name!!! "<<endl;
+            name_check();
+        }
+    }
+}
+//----------------------------------------------------------
