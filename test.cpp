@@ -297,3 +297,47 @@ void regist()
     cout<<"\nRegistration Successful\n";
 }
 //-------------------------------------------------------------
+//----------------------------------------------------
+  void login()
+  {
+      char c;
+      int jj=0;
+      char l_pass[100];
+      char encr_pass[100];
+      cout<<"\nUSERNAME :";cin>>l_user;
+      cout<<"\nPASSWORD: ";
+      while((c=_getch())!=13)
+       {
+       l_pass[jj]=c;
+       jj++;
+       printf("*");
+       }
+       l_pass[jj]='\0';
+       int h;
+       for(h=0;h<jj;h++)
+       {
+           encryption(l_pass[h]);
+           encr_pass[h]=y;
+       }
+        encr_pass[h]='\0';
+       if(encr_pass==users[l_user].password)
+       {
+           cout<<"\nWelcome "<<users[l_user].name_n<<endl;
+       }
+       else
+       {
+         if(sum==2)
+           {
+            cout<<"\nYou are denied access to the system!!"<<endl;
+            display();
+           }
+         cout<<"\nFailed login. Try again.";
+         sum+=1;
+         login();
+
+       }
+  }
+
+
+
+//-------------------------------------------------------------
