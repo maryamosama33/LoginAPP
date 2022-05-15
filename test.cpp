@@ -341,6 +341,7 @@ void regist()
 
 
 //-------------------------------------------------------------
+
 //-------------------------------------------------------------
 void display()
 {
@@ -380,6 +381,97 @@ void display()
     }
     }
 }
+//-------------------------------------------------------------
+void change_pass()
+{
+    loadusers(users);
+    string o_pass;
+    cout<<"\nEnter the old password: ";cin>>o_pass;
+        char en_pass[100];
+        for(int h=0;h<o_pass.length();h++)
+            {
+              encryption(o_pass[h]);
+              en_pass[h]=y;
+            }
+        string new_pass;
+        printf("\nThe password must be at least 8 characters"
+            "\nThe password may contain lowercase letters,uppercase letters, digits and special characters \n");
+        cout<<"\nEnter the new password: ";cin>>new_pass;
+        int dig=0,low_alpha=0,upper_alpha=0,special=0;
+    for(int o=0;o<new_pass.length();o++)
+    {
+        if(new_pass[o]>='0'&&new_pass[o]<='9')
+            dig+=1;
+    }
+    for(int o=0;o<new_pass.length();o++)
+    {
+        if(new_pass[o] >= 'a' && new_pass[o] <= 'z' )
+            low_alpha+=1;
+    }
+    for(int o=0;o<new_pass.length();o++)
+    {
+        if(new_pass[o] >= 'A' && new_pass[o] <= 'Z')
+            upper_alpha+=1;
+    }
+    for(int o=0;o<new_pass.length();o++)
+    {
+        if(new_pass[o]=='!'||new_pass[o]=='@'||new_pass[o]=='#'||new_pass[o]=='$'||new_pass[o]=='%'||new_pass[o]=='^'||new_pass[o]=='&'||new_pass[o]=='*'||new_pass[o]=='>'||new_pass[o]=='<'||new_pass[o]==','||new_pass[o]=='.'||new_pass[o]=='+'||new_pass[o]=='='||new_pass[o]=='-')
+            special+=1;
+    }
+    if(dig==0||low_alpha==0||upper_alpha==0||special==0||new_pass.length()<8)
+        {
+            cout<<"\nPassword is weak , enter another password!! ";
+             change_pass();
+        }
+    else
+    {
+        char en_newpas[100];
+        for(int h=0;h<new_pass.length();h++)
+            {
+              encryption(new_pass[h]);
+              en_newpas[h]=y;
+            }
+       string repeat_pass;
+       cout<<"\nRepeat the password: ";
+       cin>>repeat_pass;
+       if(repeat_pass==new_pass)
+       {
+           string temp;
+           ifstream in("users.txt");
+           ofstream out("temp.txt");
+           while(in>>temp)
+           {
+               if(temp==en_pass)
+               {
+                   temp=en_newpas;
+               }
+               out<<temp<<endl;
+           }
+           in.close();
+           out.close();
+            ifstream infile("temp.txt");
+            ofstream outfile("users.txt");
+            string content = "";
+            int tt;
+
+            for(tt=0; !infile.eof(); tt++)
+            {
+                 content += infile.get();
+            }
+
+                  infile.close();
+
+         content.erase(content.end()-1);
+               tt--;
+
+            outfile << content;
+            outfile.close();
+
+       }
+    }
+    }
+
+//-------------------------------------------------------------
 //-------------------------------------------------------------
 int main()
 {
