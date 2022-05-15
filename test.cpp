@@ -283,3 +283,17 @@ void encryption(char x)
     else
         y=x;
 }
+//----------------------------------------------------------
+void regist()
+{
+    r_username();
+    pass();
+    reemail();
+    phone_check();
+    name_check();
+    ofstream re_name("users.txt",ios::app);
+    re_name<<name<<endl;
+    re_name.close();
+    cout<<"\nRegistration Successful\n";
+}
+//-------------------------------------------------------------
