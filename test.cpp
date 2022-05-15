@@ -341,3 +341,49 @@ void regist()
 
 
 //-------------------------------------------------------------
+//-------------------------------------------------------------
+void display()
+{
+    bool running=true;
+    while(running)
+    {
+    loadusers(users);
+    cout<<"***********************************************************************\n\n\n";
+    cout<<"                      Welcome to login page                               \n\n";
+    cout<<"*******************        MENU        *******************************\n\n";
+    cout<<"1.LOGIN"<<endl;
+    cout<<"2.REGISTER"<<endl;
+    cout<<"3.Change password"<<endl;
+    cout<<"4.Exit"<<endl;
+    cout<<"\nEnter your choice :";
+    int choice;
+    cin>>choice;
+    cout<<endl;
+    switch(choice)
+    {
+        case 1:
+            login();
+            break;
+        case 2:
+            regist();
+            break;
+        case 3:
+            login();
+            change_pass();
+            break;
+        case 4:
+            cout<<"Thanks for using this program.\n";
+            running = false;
+            break;
+        default:
+            cout<<"You've made a mistake , Try again..\n"<<endl;
+    }
+    }
+}
+//-------------------------------------------------------------
+int main()
+{
+
+   display();
+   return 0;
+}
